@@ -40,13 +40,14 @@ struct Home: View {
 //        .navigationBarTitle("")
 //        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
-        Login(show: self.$show)
+        Login()
+        //SignUp(show: self.$show)
     }
     
 }
 
 struct Login: View{
-    @Binding var show: Bool
+    
     @State var email = ""
     @State var pass = ""
     @State var color = Color.black.opacity(0.7)
@@ -61,7 +62,6 @@ struct Login: View{
             Text("Log in to your account")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(self.color)
                 .padding(.top, 15)
             
             TextField("Username or Email",text:self.$email)
@@ -123,28 +123,22 @@ struct Login: View{
             HStack(spacing: 5){
                 Text("Don't have an account ?")
                 
-                Button(action: {
-                    // Navigate to sign up page
-                    self.show.toggle()
-                }) {
+                NavigationLink(destination: SignUp()){
                     Text("Sign up")
                     .fontWeight(.bold)
                     .foregroundColor(Color("Dominant"))
-                    
                 }
+                
                 Text("now").multilineTextAlignment(.leading)
                 
             }.padding(.top, 25)
-
         }
         .padding(.horizontal, 25)
-    
     }
 }
 
 struct SignUp: View{
     
-    @Binding var show : Bool
     @State var email = ""
     @State var pass = ""
     @State var repass = ""
@@ -158,7 +152,15 @@ struct SignUp: View{
     
     var body: some View{
         
-        ZStack(alignment: .topLeading){
+        VStack(alignment: .leading){
+            
+//            Button(action: {
+//                //self.show.toggle()
+//            }) {
+//                Image(systemName: "chevron.left")
+//                    .font(.title)
+//                    .foregroundColor(Color("Dominant"))
+//            }.padding()
             
             GeometryReader{_ in
                 
@@ -248,18 +250,6 @@ struct SignUp: View{
                 .padding(.horizontal, 25)
                 
             }
-            
-            Button(action: {
-                self.show.toggle()
-            }) {
-                Image(systemName: "chevron.left")
-                    .font(.title)
-                    .foregroundColor(Color("Dominant"))
-            }
-
         }
-        .navigationBarBackButtonHidden(true)
-        
-        
     }
 }
