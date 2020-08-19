@@ -8,9 +8,10 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     var body: some View {
-        Text("Email Login Page Project")
+        Text("Email Login Page Project, this is dev branch")
     }
 }
 
