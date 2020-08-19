@@ -28,20 +28,7 @@ struct Home: View {
     
     var body: some View{
         
-//        NavigationView{
-//            ZStack{
-//                NavigationLink(destination: SignUp(show: self.$show), isActive: self.$show){
-//                    Text("")
-//                }.hidden()
-//
-//                Login(show: self.$show)
-//            }
-//        }
-//        .navigationBarTitle("")
-//        .navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
         Login()
-        //SignUp(show: self.$show)
     }
     
 }
@@ -52,6 +39,8 @@ struct Login: View{
     @State var pass = ""
     @State var color = Color.black.opacity(0.7)
     @State var visible = false
+    @State var alert = false
+    @State var error = ""
     
     let borderColor = Color(red: 107.0/255.0, green: 164.0/255.0, blue: 252.0/255.0)
     
@@ -59,7 +48,7 @@ struct Login: View{
         VStack(){
             Image("finance_app").resizable().frame(width: 300.0, height: 255.0, alignment: .top)
             
-            Text("Log in to your account")
+            Text("Sign in to your account")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding(.top, 15)
@@ -108,7 +97,7 @@ struct Login: View{
             
             // Sign in button
             Button(action: {
-                // Insert
+                self.Verify()
             }) {
                 Text("Sign in")
                     .foregroundColor(.white)
@@ -119,6 +108,10 @@ struct Login: View{
             .background(Color("Dominant"))
             .cornerRadius(6)
             .padding(.top, 15)
+            .alert(isPresented: $alert){()->Alert in
+                return Alert(title: Text("Login error"), message: Text("\(self.error)"), dismissButton:
+                    .default(Text("OK").fontWeight(.semibold)))
+            }
             
             HStack(spacing: 5){
                 Text("Don't have an account ?")
@@ -134,6 +127,16 @@ struct Login: View{
             }.padding(.top, 25)
         }
         .padding(.horizontal, 25)
+        
+    }
+    
+    func Verify(){
+        if self.email != "" && self.pass != ""{
+            
+        }else{
+            self.error = "Please fill all the content property"
+            self.alert = true
+        }
     }
 }
 
@@ -153,14 +156,6 @@ struct SignUp: View{
     var body: some View{
         
         VStack(alignment: .leading){
-            
-//            Button(action: {
-//                //self.show.toggle()
-//            }) {
-//                Image(systemName: "chevron.left")
-//                    .font(.title)
-//                    .foregroundColor(Color("Dominant"))
-//            }.padding()
             
             GeometryReader{_ in
                 
@@ -253,3 +248,6 @@ struct SignUp: View{
         }
     }
 }
+
+
+
