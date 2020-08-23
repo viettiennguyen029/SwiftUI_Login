@@ -275,7 +275,6 @@ struct SignUp: View{
                         }) {
                             //Text(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/)
                             Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
-                                .foregroundColor(self.color)
                                 .opacity(0.8)
                         }
                     }
@@ -302,7 +301,6 @@ struct SignUp: View{
                         }) {
                             //Text(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/)
                             Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
-                                .foregroundColor(self.color)
                                 .opacity(0.8)
                         }
                     }
